@@ -1,0 +1,7 @@
+*.txt
+corremela.sh
+*.crt
+*.pem
+*.cer
+listenerDocker/.git
+rsyslogDocker/.git

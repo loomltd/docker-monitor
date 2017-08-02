@@ -1,0 +1,35 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /containers/5*/*.log
+  include_lines: ${INCLUDE}
+  exclude_lines: ${EXCLUDE}
+  exclude_files: ${EXCLUDE_FILES}
+  tags: ${TAGS}
+  ignore_older: ${IGNORE_OLDER}
+  encoding: ${ENCODING}
+  json:
+    keys_under_root: true
+    add_error_key: true
+    message_key: log
+  tail_files: true
+
+filebeat.config.prospectors:
+  path: /usr/share/filebeat/filebeat.yml
+  reload.enabled: true
+  reload.period: 3s
+
+output:
+  logstash:
+    hosts: ["${CUSTOMER_NAME}-data.loomsystems.com:5044"]
+    ssl:
+      enabled: true
+      certificate_authorities: /usr/share/loom/loom.pem
+      certificate: /usr/share/loom/selfsigned.crt
+      key: /usr/share/loom/selfsigned.key
+  console:
+    pretty: true
+  # file:
+  #   path: "/usr/share"
+  #   filename: "outputfile"
+  #   numer_of_files: 1
