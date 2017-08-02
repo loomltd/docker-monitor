@@ -1,4 +1,4 @@
-# Loom Docker Listener
+# Loom Collector Docker
 Docker Container to monitor other containers logs and send them to Loom.
 
 This container uses [Filebeat docker](https://www.elastic.co/guide/en/beats/filebeat/current/running-on-docker.html "File Beat") base image (5.5.0)
