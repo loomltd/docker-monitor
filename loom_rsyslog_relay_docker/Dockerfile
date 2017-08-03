@@ -1,8 +1,7 @@
 FROM alpine:3.6
 
 ENV DEBUG=false \
-  CUSTOMER_NAME="" \
-  SEND_IP=""
+  CUSTOMER_NAME=""
 
 #install required packages
 RUN apk update \
