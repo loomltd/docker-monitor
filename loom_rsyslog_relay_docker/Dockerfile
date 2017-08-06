@@ -6,9 +6,10 @@ ENV DEBUG=false \
 #install required packages
 RUN apk update \
   && apk upgrade \
-  && apk --no-cache add --update rsyslog rsyslog-tls curl bind-tools \
-  && curl --create-dirs -o /etc/rsyslog.d/keys/ca.d/loom.pem https://static.loomsystems.com/loom.cer \
-  && awk '{if(NR==1)sub(/^\xef\xbb\xbf/,"");print}' /etc/rsyslog.d/keys/ca.d/loom.pem > /etc/rsyslog.d/keys/ca.d/loom.pem \
+  && apk --no-cache add --update rsyslog rsyslog-tls curl bind-tools openssl \
+  && curl --create-dirs -o /etc/rsyslog.d/keys/ca.d/loom.cer https://static.loomsystems.com/loom.cer \
+  && sed -i 's/\r//g' /etc/rsyslog.d/keys/ca.d/loom.cer \
+  && awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}{print}' /etc/rsyslog.d/keys/ca.d/loom.cer > /etc/rsyslog.d/keys/ca.d/loom.pem \
   && mkdir -p /var/spool/rsyslog \
   && apk del curl
 
