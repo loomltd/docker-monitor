@@ -3,3 +3,4 @@ corremela.sh
 *.crt
 *.pem
 *.cer
+*.json
