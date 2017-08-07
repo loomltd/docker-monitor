@@ -6,7 +6,12 @@ PATH = "/containers"
 files = os.listdir(PATH)
 dat =[]
 for f in files:
-    json_file = open(PATH+"/"+f+"/config.v2.json")
+
+    if (os.path.exists(PATH+"/"+f+"/config.v2.json")):
+        json_file = open(PATH+"/"+f+"/config.v2.json")
+    elif (os.path.exists(PATH+"/"+f+"/config.json")):
+        json_file = open(PATH+"/"+f+"/config.json")
+
     temp = json.load(json_file)
     json_file.close()
     conf_file.write("- input_type: log\n")
