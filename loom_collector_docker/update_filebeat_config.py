@@ -11,6 +11,8 @@ for f in files:
         json_file = open(PATH+"/"+f+"/config.v2.json")
     elif (os.path.exists(PATH+"/"+f+"/config.json")):
         json_file = open(PATH+"/"+f+"/config.json")
+    else:
+        rise Exception("no valid config.json or config.v2.json detected")
 
     temp = json.load(json_file)
     json_file.close()
