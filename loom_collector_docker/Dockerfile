@@ -10,7 +10,7 @@ ENV EXCLUDE=[] \
   ENCODING="plain"
 
 # add the script that generates the filebeat.yml dyanmically to the docker
-COPY  ./jsoner.py jsoner.py
+COPY  ./update_filebeat_config.py update_filebeat_config.py
 COPY ./run.sh run.sh
 
 USER root
